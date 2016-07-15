@@ -21,18 +21,16 @@ public enum ResumeDao {
     private int id = 1;
     private Map<Integer, Resume> storedData = new HashMap<>();
 
-    private ResumeDao() {
+    ResumeDao() {
         Resume r1 = new Resume();
-        r1.setName("c");
+        r1.setName("chungho");
         r1.setTitle("java");
-        r1.setDescription("coding");
-        r1.setCompany("kaiserxxcv");
+        r1.setDescription("write a program");
+        r1.setCompany("kaiser");
         storedData.put(id++, r1);
     }
 
-    public int setModel(JAXBElement<Resume> resume){
-        Resume r = resume.getValue();
-//        Resume r2 = new Resume("chungho", "jdcdava ", "coding", "kaiscvdsfer");
+    public int setModel(Resume r){
         storedData.put(id, r);
         return id++;
     }

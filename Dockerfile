@@ -19,7 +19,12 @@ COPY RESTfulExample /app/RESTfulExample
 WORKDIR /app/RESTfulExample
 
 COPY lib/repository /root/.m2/repository
-RUN mvn package
-EXPOSE 8080
 
-CMD jetty-runner --path /RESTfulExample /app/RESTfulExample/target/RESTfulExample.war
+EXPOSE 8080
+RUN mvn package
+
+CMD java -XshowSettings:properties\
+    -Djavax.xml.bind.context.factory=org.eclipse.persistence.jaxb.JAXBContextFactory \
+    -jar /usr/share/java/jetty-runner.jar \
+    --port 8080 \
+    /app/RESTfulExample/target/RESTfulExample.war
